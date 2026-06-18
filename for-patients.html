@@ -111,8 +111,11 @@ ul{list-style:none;}
   .page-hero p, .hero-lede { max-width: 100% !important; }
   .hero-inner { max-width: 100% !important; }
   .page-hero, .hero, section { overflow: hidden; }
+  .header-inner { height: 68px; }
+  .logo { min-width: 0; flex-shrink: 1; overflow: hidden; }
+  .logo img { height: 44px !important; width: auto; flex-shrink: 0; }
   .logo-text small { display: none; }
-  .logo img { height: 48px !important; }
+  .logo-text strong { font-size: 1rem; white-space: nowrap; }
   .main-nav { display: none; }
   .main-nav.open {
     display: flex;
@@ -146,6 +149,8 @@ ul{list-style:none;}
     border: none;
     cursor: pointer;
     padding: 10px;
+    margin-left: auto;
+    flex-shrink: 0;
     z-index: 1000;
   }
   .hamburger span {

@@ -192,6 +192,28 @@ ul{list-style:none;}
   /* Fix sticky sidebar cards */
   .doc-card { position: static; }
 }
+
+@media (max-width: 768px) {
+  /* Fix email addresses wrapping off screen */
+  .person-email a, .detail-body dd a, 
+  .reps-table td a, .input-card-email a,
+  .officer-email a, a[href^="mailto"] {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    font-size: 0.78rem;
+  }
+
+  /* Fix related organisations cards hanging off */
+  .org-card { padding: 20px 16px; }
+  .org-card h2 { font-size: 1.4rem; }
+  .org-abbr { font-size: 0.8rem; }
+  .visit-btn { font-size: 0.82rem; padding: 0.7em 1em; }
+  .org-link-col { align-items: flex-start; width: 100%; }
+
+  /* Fix reps table on mobile */
+  .reps-table { font-size: 0.82rem; }
+  .reps-table td { word-break: break-word; padding: 10px 8px; }
+}
 </style>
 </head>
 <body>

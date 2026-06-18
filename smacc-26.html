@@ -201,6 +201,28 @@ ul{list-style:none;}
   /* Fix sticky sidebar cards */
   .doc-card { position: static; }
 }
+
+@media (max-width: 768px) {
+  /* Fix email addresses wrapping off screen */
+  .person-email a, .detail-body dd a, 
+  .reps-table td a, .input-card-email a,
+  .officer-email a, a[href^="mailto"] {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    font-size: 0.78rem;
+  }
+
+  /* Fix related organisations cards hanging off */
+  .org-card { padding: 20px 16px; }
+  .org-card h2 { font-size: 1.4rem; }
+  .org-abbr { font-size: 0.8rem; }
+  .visit-btn { font-size: 0.82rem; padding: 0.7em 1em; }
+  .org-link-col { align-items: flex-start; width: 100%; }
+
+  /* Fix reps table on mobile */
+  .reps-table { font-size: 0.82rem; }
+  .reps-table td { word-break: break-word; padding: 10px 8px; }
+}
 </style>
 </head>
 <body>
@@ -419,6 +441,29 @@ ul{list-style:none;}
 
 
 <script>
+// Countdown timer
+var deadline = new Date("July 6, 2026 23:59:00");
+function updateCountdown() {
+  var now = new Date();
+  var diff = deadline - now;
+  if (diff <= 0) {
+    document.getElementById("countdown-grid").style.display = "none";
+    document.getElementById("countdown-status").textContent = "";
+    document.querySelector(".countdown-title").innerHTML = "The abstract deadline has passed.";
+    return;
+  }
+  var days = Math.floor(diff / (1000*60*60*24));
+  var hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  var mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+  var secs = Math.floor((diff % (1000*60)) / 1000);
+  document.getElementById("cd-days").textContent = String(days).padStart(2,"0");
+  document.getElementById("cd-hours").textContent = String(hours).padStart(2,"0");
+  document.getElementById("cd-mins").textContent = String(mins).padStart(2,"0");
+  document.getElementById("cd-secs").textContent = String(secs).padStart(2,"0");
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
 var btn = document.querySelector('.hamburger');
 var nav = document.querySelector('.main-nav');
 if (btn && nav) {

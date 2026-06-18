@@ -148,6 +148,60 @@ ul { list-style: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+@media(max-width:768px){
+  .wrap{padding:0 16px;}
+  .logo-text small{display:none;}
+  .main-nav,.nav-cta{display:none;}
+  .main-nav.open{
+    display:flex;
+    flex-direction:column;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:#fff;
+    z-index:999;
+    padding:100px 24px 24px;
+    gap:4px;
+    overflow-y:auto;
+  }
+  .main-nav.open>li>a{
+    display:block;
+    padding:14px 0;
+    font-size:1rem;
+    border-bottom:1px solid var(--border);
+    color:var(--text);
+  }
+  .sub{
+    position:static;opacity:1;visibility:visible;
+    transform:none;box-shadow:none;border:none;
+    padding:0 0 0 16px;
+  }
+  .hamburger{
+    display:flex !important;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:10px;
+    z-index:1000;
+    position:relative;
+  }
+  .hamburger span{display:block;width:24px;height:2px;background:var(--blue);border-radius:2px;}
+  .close-btn{
+    position:fixed;
+    top:20px;right:20px;
+    font-size:2rem;
+    background:none;border:none;
+    color:var(--blue);
+    cursor:pointer;
+    z-index:1000;
+    display:none;
+    line-height:1;
+  }
+  .main-nav.open~.close-btn,
+  .close-btn.visible{display:block;}
+}
 </style>
 </head>
 <body>
@@ -357,13 +411,41 @@ ul { list-style: none; }
   </div>
 </footer>
 
+
 <script>
-  const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('.main-nav');
-  hamburger?.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', open);
-  });
+  (function(){
+    var hamburger = document.querySelector('.hamburger');
+    var nav = document.querySelector('.main-nav');
+    if(!hamburger || !nav) return;
+
+    // Create close button
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'close-btn';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.setAttribute('aria-label', 'Close menu');
+    document.body.appendChild(closeBtn);
+
+    hamburger.addEventListener('click', function(){
+      nav.classList.add('open');
+      closeBtn.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeBtn.addEventListener('click', function(){
+      nav.classList.remove('open');
+      closeBtn.classList.remove('visible');
+      document.body.style.overflow = '';
+    });
+
+    // Close when a link is clicked
+    nav.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        nav.classList.remove('open');
+        closeBtn.classList.remove('visible');
+        document.body.style.overflow = '';
+      });
+    });
+  })();
 </script>
 </body>
 </html>

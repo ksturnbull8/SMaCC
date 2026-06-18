@@ -63,11 +63,11 @@ ul { list-style: none; }
 .hamburger span { display: block; width: 22px; height: 2px; background: var(--blue); border-radius: 2px; }
 
 .hero { background: var(--blue); padding: 88px 0 80px; }
-.hero-inner { max-width:900px; }
+.hero-inner { max-width: 760px; }
 .hero .eyebrow { color: rgba(255,255,255,0.85); font-size: 1.2rem; letter-spacing: 0.02em; text-transform: none; font-weight: 600; }
 .hero h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
 .hero h1 em { font-style: italic; color: #a8c4f0; }
-.hero-lede { font-size: 1.05rem; color: rgba(255,255,255,0.7); max-width:900px; margin-bottom: 2rem; line-height: 1.7; }
+.hero-lede { font-size: 1.05rem; color: rgba(255,255,255,0.7); max-width: 580px; margin-bottom: 2rem; line-height: 1.7; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .about-section { padding: 88px 0; border-bottom: 1px solid var(--border); }
@@ -147,6 +147,24 @@ ul { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
+}
+
+@media(max-width:680px){
+  .site-header { position: sticky; top: 0; z-index: 100; }
+  .header-inner { height: auto; padding: 10px 0; flex-wrap: nowrap; }
+  .logo img { height: 48px !important; }
+  .logo-text small { display: none; }
+  .logo-text strong { font-size: 1rem; }
+  .main-nav, .nav-cta { display: none; }
+  .main-nav.open { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #fff; z-index: 200; padding: 80px 24px 24px; gap: 4px; overflow-y: auto; }
+  .main-nav.open > li > a { padding: 14px 12px; font-size: 1rem; border-bottom: 1px solid var(--border); display: block; }
+  .sub { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; padding: 0 0 0 16px; }
+  .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; margin-left: auto; z-index: 300; position: relative; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--blue); border-radius: 2px; }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .wrap { padding: 0 16px; }
 }
 </style>
 </head>

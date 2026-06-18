@@ -130,6 +130,23 @@ ul{list-style:none;}
   }
   .footer-grid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 768px) {
+  /* Fix all two-column grids to stack on mobile */
+  .about-grid, .content-grid, .content-grid.reverse,
+  .abstract-grid, .apply-inner, .register-inner,
+  .intro-cols, .contact-grid, .meeting-cards,
+  .criteria-grid, .stats-grid, .network-grid,
+  .officer-cards, .input-cards, .person-grid,
+  .footer-grid { grid-template-columns: 1fr !important; }
+
+  /* Centre all mobile nav items */
+  .main-nav.open > li > a { text-align: center; }
+  .main-nav.open .sub a { text-align: center; }
+
+  /* Fix sticky sidebar cards */
+  .doc-card { position: static; }
+}
 </style>
 </head>
 <body>
